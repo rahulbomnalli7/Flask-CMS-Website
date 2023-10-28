@@ -1,4 +1,3 @@
 Flask
 Gunicorn
-flask_session
-os
+Flask-session
