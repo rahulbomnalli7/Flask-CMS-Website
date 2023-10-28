@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
+# A variable to track whether the user is authenticated as an admin
+is_authenticated = False
+
 # Initial content (for demonstration)
 content = {
     "notification_title_1": "New Admission Schedule for 2023-24",
@@ -33,7 +36,30 @@ def index():
 
 @app.route('/admin')
 def admin():
+    # Check if the user is authenticated as an admin
+    if not is_authenticated:
+        return redirect('/admin/login')
     return render_template('admin.html', **content)
+
+@app.route('/admin/login')
+def admin_login():
+    return render_template('admin_login.html')
+
+@app.route('/admin/login', methods=['POST'])
+def check_admin_login():
+    global is_authenticated  # Declare the variable as global
+    username = request.form['username']
+    password = request.form['password']
+
+    # Replace with your admin username and password
+    admin_username = "admin"
+    admin_password = "adminpassword"
+
+    if username == admin_username and password == admin_password:
+        is_authenticated = True  # Set the authenticated flag
+        return redirect('/admin')
+    else:
+        return "Invalid username or password. <a href='/admin/login'>Try again</a>"
 
 @app.route('/update', methods=['POST'])
 def update_content():
