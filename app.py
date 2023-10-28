@@ -49,7 +49,7 @@ def admin():
     # Check if the user is authenticated as an admin
     if not is_authenticated:
         return redirect('/admin/login')
-    return render_template('admin.html', **content)
+    return render_template('admin.html', content=content)  # Pass the 'content' dictionary to the template
 
 @app.route('/admin/login')
 def admin_login():
