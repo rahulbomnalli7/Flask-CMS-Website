@@ -3,6 +3,19 @@ from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
+# A variable to track whether the user is authenticated as an admin
+is_authenticated = False
+
+
+users = [
+    {"username": "admin", "password": "adminpassword"},
+    {"username": "user1", "password": "password1"},
+    {"username": "user2", "password": "password2"},
+    {"username": "user3", "password": "password3"},
+    {"username": "user4", "password": "password4"},
+    {"username": "user5", "password": "password5"},
+]
+
 # Initial content (for demonstration)
 content = {
     "notification_title_1": "New Admission Schedule for 2023-24",
@@ -33,7 +46,35 @@ def index():
 
 @app.route('/admin')
 def admin():
+    # Check if the user is authenticated as an admin
+    if not is_authenticated:
+        return redirect('/admin/login')
     return render_template('admin.html', **content)
+
+@app.route('/admin/login')
+def admin_login():
+    return render_template('admin_login.html')
+
+@app.route('/admin/login', methods=['POST'])
+def check_admin_login():
+    global is_authenticated  # Declare the variable as global
+    username = request.form['username']
+    password = request.form['password']
+
+    for user in users:
+        if user['username'] == username and user['password'] == password:
+            is_authenticated = True  # Set the authenticated flag
+            return redirect('/admin')
+        
+    error_message = "Invalid username or password. Please try again."
+    return render_template('admin_login.html', error=error_message)
+
+    if username == admin_username and password == admin_password:
+        is_authenticated = True  # Set the authenticated flag
+        return redirect('/admin')
+    else:
+        error_message = "Invalid username or password. Please try again."
+        return render_template('admin_login.html', error=error_message)
 
 @app.route('/update', methods=['POST'])
 def update_content():

@@ -3,219 +3,9 @@
 <head>
     <title>BNMIT College Notifications</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-              /* Reset default margin and padding */
-              body, h1, h2, ul, li {
-        margin: 0;
-        padding: 0;
-    }
-    
-    /* Body Styles */
-    body {
-        font-family: "Poppins", sans-serif;
-        background-color: #f0f0f0;
-    }
-    
-    /* Heading Styles */
-    h2.notification-subheading, h2 {
-        font-size: 20px; /* Decreased font size for h2 in mobile view */
-        padding-bottom: 10px;
-        position: relative; /* Create a positioning context for the line */
-    }
-    
-    h2.notification-subheading::after, h2::after {
-        content: "";
-        display: block;
-        width: 100%; /* Set the width to 100% to create a line */
-        height: 2px; /* Set the height and color of the line */
-        background-color: #000; /* Change the line color as needed */
-        position: absolute;
-        bottom: 0;
-    }
-    
-    /* Header Styles */
-    header {
-        background-color: #ff7d21;
-        color: #fff;
-        text-align: center;
-        padding: 10px;
-        overflow: hidden; /* Disable horizontal scrollbar */
-    }
-    
-    h1.notification-heading {
-        font-size: 24px;
-    }
-    
-    /* Main Content Styles */
-    h2.notification-subheading {
-        font-size: 18px;
-    }
-    
-    h2 {
-        font-size: 24px;
-    }
-    
-    main {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    /* Section Styles */
-    section {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* List Styles */
-    ul {
-        list-style: none;
-    }
-    
-    li {
-        margin-bottom: 20px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 20px;
-    }
-    
-    /* Notification Title Styles */
-    .notification-title a {
-        font-weight: bold;
-        font-size: 18px;
-        color: #333;
-        text-decoration: none;
-    }
-    
-    /* Notification Date Styles */
-    .notification-date {
-        color: #777;
-        font-size: 14px;
-    }
-    
-    /* Notification Options Styles */
-    .notification-options {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
-    
-    .notification-options img {
-        max-width: 100px;
-        max-height: 100px;
-        margin-right: 10px;
-    }
-    
-    /* Download Link Styles */
-    .download-link {
-        background-color: #0073e6;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 5px;
-        text-align: center;
-        text-decoration: none;
-    }
-    
-    a {
-        color: #0073e6;
-        font-weight: bold;
-    }
-    
-    /* Media Query for Mobile Devices */
-    @media (max-width: 768px) {
-        header {
-            font-size: 16px;
-        }
-    
-        h1.notification-heading {
-            font-size: 20px;
-        }
-    
-        h2.notification-subheading,
-        h2 {
-            font-size: 20px; /* Decreased font size for h2 in mobile view */
-        }
-    
-        main {
-            padding: 10px;
-        }
-    
-        section {
-            padding: 10px;
-        }
-    
-        .notification-title a {
-            font-size: 16px;
-        }
-    
-        .notification-date {
-            font-size: 12px;
-        }
-    
-        .download-link {
-            padding: 8px 16px; /* Adjust padding values for mobile view */
-            font-size: 14px; /* Adjust font size for mobile view */
-        }
-    }
-    /* Add more styling for your website */
-    
-    /* Adjust link styles for better visibility */
-    a {
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-    
-    a:hover {
-        color: #ff7d21; /* Change link color on hover */
-    }
-    
-    /* Style the Latest Notifications and Previous Notifications sections */
-    section h2 {
-        color: #0073e6; /* Section title color */
-    }
-    
-    /* Style the border of list items */
-    li {
-        border-bottom: 1px solid #ddd;
-    }
-    
-    /* Add some spacing to improve readability */
-    .notification-title, .notification-date, .download-link {
-        margin-bottom: 10px;
-    }
-    
-    /* Style the download link */
-    .download-link {
-        background-color: #0073e6;
-        color: #fff;
-        padding: 8px 16px; /* Slightly increase padding for better touch usability */
-        border-radius: 5px;
-        display: inline-block;
-        text-align: center;
-        transition: background-color 0.3s;
-    }
-    
-    .download-link:hover {
-        background-color: #005ea6; /* Change background color on hover */
-    }
-    
-    /* Style images within notification options */
-    .notification-options img {
-        max-width: 100%; /* Ensure images are responsive */
-        height: auto;
-    }
-    
-    /* Add some spacing between notifications in the list */
-    li + li {
-        margin-top: 20px;
-    }
-    
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/index.css">
 </head>
 <body>
 
@@ -267,7 +57,7 @@
     </section>
 
     <section>
-        <h2>Previous Notifications</h2>
+        <h2>Notifications</h2>
         <ul>
             <li>
                 <p class="notification-title">
@@ -283,7 +73,7 @@
             <li>
                 <p class="notification-title">
                     <a href="#">{{ notification_title_5 }}</a>
-                    <img src="https://pdacek.ac.in/assets/images/blinking_new.gif" alt="New Icon">
+
                 </p>
                 <p class="notification-date">Published on: {{ notification_date_5 }}</p>
                 <p>{{ notification_content_5 }}</p>
