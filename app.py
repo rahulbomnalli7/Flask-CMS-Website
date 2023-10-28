@@ -1,19 +1,23 @@
 from flask import Flask, render_template, request, redirect, session
+from flask_session import Session
+import os
 
 app = Flask(__name__)
-app.secret_key = '54c85b795c7e5ec891b70983cfb04f8f'
+app.secret_key = os.urandom(24)
+
+# Configure Flask-Session to use server-side sessions
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
 
 # A variable to track whether the user is authenticated as an admin
-is_authenticated = False
-
-users = [
-    {"username": "admin", "password": "adminpassword"},
-    {"username": "user1", "password": "password1"},
-    {"username": "user2", "password": "password2"},
-    {"username": "user3", "password": "password3"},
-    {"username": "user4", "password": "password4"},
-    {"username": "user5", "password": "password5"},
-]
+users = {
+    "admin": "adminpassword",
+    "user1": "password1",
+    "user2": "password2",
+    "user3": "password3",
+    "user4": "password4",
+    "user5": "password5",
+}
 
 # Initial content (for demonstration)
 content = {
@@ -46,27 +50,25 @@ def index():
 
 @app.route('/admin')
 def admin():
-    # Check if the user is authenticated as an admin
-    if not is_authenticated:
+    if not session.get('is_authenticated'):
         return redirect('/admin/login')
     return render_template('admin.html', content=content)
 
 @app.route('/admin/login')
 def admin_login():
-    return render_template('admin_login.html')
+    if not session.get('is_authenticated'):
+        return render_template('admin_login.html')
+    return redirect('/admin')
 
 @app.route('/admin/login', methods=['POST'])
 def check_admin_login():
-    global is_authenticated
     username = request.form['username']
     password = request.form['password']
 
-    for user in users:
-        if user['username'] == username and user['password'] == password:
-            is_authenticated = True
-            session['is_authenticated'] = True
-            return redirect('/admin')
-    
+    if username in users and users[username] == password:
+        session['is_authenticated'] = True
+        return redirect('/admin')
+
     error_message = "Invalid username or password. Please try again."
     return render_template('admin_login.html', error=error_message)
 
@@ -96,6 +98,7 @@ def update_content():
         content['notification_date_5'] = request.form['notification_date_5']
         content['notification_content_5'] = request.form['notification_content_5']
         content['pdf_url_5'] = request.form['pdf_url_5']
+
     return redirect('/admin')
 
 if __name__ == '__main__':
