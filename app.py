@@ -6,6 +6,16 @@ app.secret_key = 'your_secret_key'
 # A variable to track whether the user is authenticated as an admin
 is_authenticated = False
 
+
+users = [
+    {"username": "admin", "password": "adminpassword"},
+    {"username": "user1", "password": "password1"},
+    {"username": "user2", "password": "password2"},
+    {"username": "user3", "password": "password3"},
+    {"username": "user4", "password": "password4"},
+    {"username": "user5", "password": "password5"},
+]
+
 # Initial content (for demonstration)
 content = {
     "notification_title_1": "New Admission Schedule for 2023-24",
@@ -51,15 +61,20 @@ def check_admin_login():
     username = request.form['username']
     password = request.form['password']
 
-    # Replace with your admin username and password
-    admin_username = "admin"
-    admin_password = "adminpassword"
+    for user in users:
+        if user['username'] == username and user['password'] == password:
+            is_authenticated = True  # Set the authenticated flag
+            return redirect('/admin')
+        
+    error_message = "Invalid username or password. Please try again."
+    return render_template('admin_login.html', error=error_message)
 
     if username == admin_username and password == admin_password:
         is_authenticated = True  # Set the authenticated flag
         return redirect('/admin')
     else:
-        return "Invalid username or password. <a href='/admin/login'>Try again</a>"
+        error_message = "Invalid username or password. Please try again."
+        return render_template('admin_login.html', error=error_message)
 
 @app.route('/update', methods=['POST'])
 def update_content():
