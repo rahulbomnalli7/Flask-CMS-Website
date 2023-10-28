@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = '54c85b795c7e5ec891b70983cfb04f8f'
 
 # A variable to track whether the user is authenticated as an admin
 is_authenticated = False
