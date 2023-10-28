@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="static\admin.css">
+</head>
+<body>
+    <h1>Admin Interface</h1>
+    <form method="POST" action="/update">
+        <div class="field-group">
+            <label for="notification_title">Notification Title 1:</label>
+            <input type="text" name="notification_title" value="{{ content['notification_title_1'] }}">
+            <br>
+            <label for="notification_date">Notification Date 1:</label>
+            <input type="text" name="notification_date" value="{{ content['notification_date_1'] }}">
+            <br>
+            <label for="notification_content">Notification Content 1:</label>
+            <textarea name="notification_content">{{ content['notification_content_1'] }}</textarea>
+            <br>
+            <label for="pdf_url">Pdf Url 1:</label>
+            <input type="text" name="pdf_url" value="{{ content['pdf_url_1'] }}">
+        </div>
+        
+        <div class="field-group">
+            <label for="notification_title_2">Notification Title 2:</label>
+            <input type="text" name="notification_title_2" value="{{ content['notification_title_2'] }}">
+            <br>
+            <label for "notification_date_2">Notification Date 2:</label>
+            <input type="text" name="notification_date_2" value="{{ content['notification_date_2'] }}">
+            <br>
+            <label for="notification_content_2">Notification Content 2:</label>
+            <textarea name="notification_content_2">{{ content['notification_content_2'] }}</textarea>
+            <br>
+            <label for="pdf_url_2">Pdf Url 2:</label>
+            <input type="text" name="pdf_url_2" value="{{ content['pdf_url_2'] }}">
+        </div>
+
+        <div class="field-group">
+            <label for="notification_title_3">Notification Title 3:</label>
+            <input type="text" name="notification_title_3" value="{{ content['notification_title_3'] }}">
+            <br>
+            <label for="notification_date_3">Notification Date 3:</label>
+            <input type="text" name="notification_date_3" value="{{ content['notification_date_3'] }}">
+            <br>
+            <label for="notification_content_3">Notification Content 3:</label>
+            <textarea name="notification_content_3">{{ content['notification_content_3'] }}</textarea>
+            <br>
+            <label for="pdf_url_3">Pdf Url 3:</label>
+            <input type="text" name="pdf_url_3" value="{{ content['pdf_url_3'] }}">
+        </div>
+
+        <div class="field-group">
+            <label for="notification_title_4">Notification Title 4:</label>
+            <input type="text" name="notification_title_4" value="{{ content['notification_title_4'] }}">
+            <br>
+            <label for="notification_date_4">Notification Date 4:</label>
+            <input type="text" name="notification_date_4" value="{{ content['notification_date_4'] }}">
+            <br>
+            <label for="notification_content_4">Notification Content 4:</label>
+            <textarea name="notification_content_4">{{ content['notification_content_4'] }}</textarea>
+            <br>
+            <label for="pdf_url_4">Pdf Url 4:</label>
+            <input type="text" name="pdf_url_4" value="{{ content['pdf_url_4'] }}">
+        </div>
+
+        <div class="field-group">
+            <label for="notification_title_5">Notification Title 5:</label>
+            <input type="text" name="notification_title_5" value="{{ content['notification_title_5'] }}">
+            <br>
+            <label for="notification_date_5">Notification Date 5:</label>
+            <input type="text" name="notification_date_5" value="{{ content['notification_date_5'] }}">
+            <br>
+            <label for="notification_content_5">Notification Content 5:</label>
+            <textarea name="notification_content_5">{{ content['notification_content_5'] }}</textarea>
+            <br>
+            <label for="pdf_url_5">Pdf Url 5:</label>
+            <input type="text" name="pdf_url_5" value="{{ content['pdf_url_5'] }}">
+        </div>
+
+        <input type="submit" name="admin" value="Save Changes">
+    </form>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BNMIT College Notifications</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/index.css">
+</head>
+<body>
+
+<header>
+    <h1 class="notification-heading">BNMIT College Notifications</h1>
+</header>
+
+<main>
+
+    <section>
+        <h2>Latest Notifications</h2>
+
+        <ul>
+            <li>
+                <p class="notification-title">
+                    <a href="#">{{ notification_title_1 }}</a>
+                    <img src="https://pdacek.ac.in/assets/images/blinking_new.gif" alt="New Icon">
+                </p>
+                <p class="notification-date">Published on: {{ notification_date_1 }}</p>
+                <p>{{ notification_content_1 }}</p>
+                <div class="notification-options">
+                    <a href="{{ pdf_url_1 }}" class="download-link">Download PDF Circular</a>
+                </div>
+            </li>
+            <!-- Add more recent notifications here -->
+            <li>
+                <p class="notification-title">
+                    <a href="#">{{ notification_title_2 }}</a>
+                    <img src="https://pdacek.ac.in/assets/images/blinking_new.gif" alt="New Icon">
+                </p>
+                <p class="notification-date">Published on: {{ notification_date_2 }}</p>
+                <p>{{ notification_content_2 }}</p>
+                <div class="notification-options">
+                    <a href="{{ pdf_url_2 }}" class="download-link">Download PDF Circular</a>
+                </div>
+            </li>
+            <li>
+                <p class="notification-title">
+                    <a href="#">{{ notification_title_3 }}</a>
+                    <img src="https://pdacek.ac.in/assets/images/blinking_new.gif" alt="New Icon">
+                </p>
+                <p class="notification-date">Published on: {{ notification_date_3 }}</p>
+                <p>{{ notification_content_3 }}</p>
+                <div class="notification-options">
+                    <a href="{{ pdf_url_3 }}" class="download-link">Download PDF Circular</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Notifications</h2>
+        <ul>
+            <li>
+                <p class="notification-title">
+                    <a href="#">{{ notification_title_4 }}</a>
+                </p>
+                <p class="notification-date">Published on: {{ notification_date_4 }}</p>
+                <p>{{ notification_content_4 }}</p>
+                <div class "notification-options">
+                    <a href="{{ pdf_url_4 }}" class="download-link">Download PDF Circular</a>
+                </div>
+            </li>
+            <!-- Add more previous notifications here -->
+            <li>
+                <p class="notification-title">
+                    <a href="#">{{ notification_title_5 }}</a>
+
+                </p>
+                <p class="notification-date">Published on: {{ notification_date_5 }}</p>
+                <p>{{ notification_content_5 }}</p>
+                <div class="notification-options">
+                    <a href="{{ pdf_url_5 }}" class="download-link">Download PDF Circular</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+</body>
+</html>
