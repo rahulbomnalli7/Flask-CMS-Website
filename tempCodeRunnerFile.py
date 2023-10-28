@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, url_for
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-app = Flask(__name__)
+app = Flask(__name)
 app.secret_key = '54c85b795c7e5ec891b70983cfb04f8f'
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 # A variable to track whether the user is authenticated as an admin
 is_authenticated = False
+
 
 users = [
     {"username": "admin", "password": "adminpassword"},
@@ -17,7 +21,6 @@ users = [
 
 # Initial content (for demonstration)
 content = {
-    # ... (your content data)
     "notification_title_1": "New Admission Schedule for 2023-24",
     "notification_date_1": "October 15, 2023",
     "notification_content_1": "Stay updated with the latest admission schedule for the academic year 2023-24.",
@@ -40,15 +43,17 @@ content = {
     "pdf_url_5": "https://example.com/pdf5.pdf",
 }
 
-@app.route('/')
-def index():
-    return render_template('index.html', **content)
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User(user_id)
 
 @app.route('/admin')
+@login_required
 def admin():
-    # Check if the user is authenticated as an admin
-    if not is_authenticated:
-        return redirect('/admin/login')
     return render_template('admin.html', content=content)
 
 @app.route('/admin/login')
@@ -57,25 +62,30 @@ def admin_login():
 
 @app.route('/admin/login', methods=['POST'])
 def check_admin_login():
-    global is_authenticated
+    global is_authenticated  # Declare the variable as global
     username = request.form['username']
     password = request.form['password']
 
     for user in users:
         if user['username'] == username and user['password'] == password:
-            is_authenticated = True
-            session['is_authenticated'] = True
+            user_obj = User(username)
+            login_user(user_obj)
+            is_authenticated = True  # Set the authenticated flag
             return redirect('/admin')
-    
+        
     error_message = "Invalid username or password. Please try again."
     return render_template('admin_login.html', error=error_message)
 
+@app.route('/admin/logout')
+@login_required
+def admin_logout():
+    is_authenticated = False
+    logout_user()
+    return redirect(url_for('admin_login'))
+
 @app.route('/update', methods=['POST'])
 def update_content():
-    if not session.get('is_authenticated'):
-        return redirect('/admin/login')
     if 'admin' in request.form:
-        # Update the content as needed
         content['notification_title_1'] = request.form['notification_title']
         content['notification_date_1'] = request.form['notification_date']
         content['notification_content_1'] = request.form['notification_content']
